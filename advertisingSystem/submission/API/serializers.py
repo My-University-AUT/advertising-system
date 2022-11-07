@@ -4,12 +4,19 @@ from submission.models import Advertise
 from django.db import transaction
 from utils.utils import uploadToCloud
 from submission.tasks import processImage
-
+from utils.utils import getImageUrl
 class AdvertiseSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=True, write_only=True)
+
+    imageLink = serializers.SerializerMethodField(method_name='get_image_link', read_only=True)
+
+    def get_image_link(self, instance):
+        imageUrl = getImageUrl(instance.imageId)
+        return imageUrl
+        
     class Meta:
         model = Advertise
-        fields = ['description', 'status', 'image', 'email', 'id', 'category']
+        fields = ['description', 'status', 'image', 'email', 'id', 'category', 'imageLink']
         extra_kwargs = {
             'status': {
                 "read_only": True

@@ -7,8 +7,8 @@
  
  NAME="Advertising Project - celery_worker_start"
  
- PROJECT_DIR=/home/redhat/data/cloud-computing/advertisting-system/advertistingSystem
- ENV_DIR=/home/redhat/data/cloud-computing/advertisting-system/advertistingSystem/venv/
+PROJECT_DIR=/home/redhat/data/cloud-computing/advertising-system/advertisingSystem
+ENV_DIR=/home/redhat/data/cloud-computing/advertising-system/advertisingSystem/venv/
  
  echo "Starting $NAME as `whoami`"
  
@@ -20,7 +20,7 @@
      . "${ENV_DIR}/bin/activate"
  fi
 
-celery -A advertistingSystem worker --loglevel=INFO --concurrency=2 -n worker1@%h
+celery -A advertisingSystem worker --loglevel=INFO --concurrency=2 -n worker1@%h
 
 
 

@@ -1,7 +1,7 @@
 import boto3
 import logging
 from botocore.exceptions import ClientError
-from advertistingSystem.settings import AWS_BASE_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, OBJECT_STORAGE_BUCKET_NAME
+from advertisingSystem.settings import AWS_BASE_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, OBJECT_STORAGE_BUCKET_NAME
 
 
 def uploadToCloud(image, imageId):

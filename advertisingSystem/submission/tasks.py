@@ -3,7 +3,7 @@ from django.db import transaction
 from utils.utils import getImageUrl
 import requests
 import urllib.parse
-from advertistingSystem.settings import IMAGE_PROCESS_BASE_URL, IMAGE_PROCESS_BASIC_AUTH
+from advertisingSystem.settings import IMAGE_PROCESS_BASE_URL, IMAGE_PROCESS_BASIC_AUTH
 from submission.models import Advertise
 
 
@@ -42,7 +42,7 @@ def processImage(self, imageId, advertiseId):
     response = requests.request("GET", url, headers=headers, data=payload)
 
     print("===========================")
-    print("image gaaaa", response.json()['result']['tags'])
+    print("image gaaaa", response.json())
     imageTags = response.json()['result']['tags']
 
     print(type(imageTags))
