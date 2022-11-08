@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS').split(" ")
 CSRF_TRUSTED_ORIGINS = config("DJANGO_CSRF_HOSTS").split(" ")
@@ -84,12 +84,12 @@ if DEBUG:
 else:
     DATABASES = {
         "default": {
-            "ENGINE": config("SQL_ENGINE", "django.db.backends.sqlite3"),
-            "NAME": config("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
-            "USER": config("SQL_USER", "user"),
-            "PASSWORD": config("SQL_PASSWORD", "password"),
-            "HOST": config("SQL_HOST", "localhost"),
-            "PORT": config("SQL_PORT", "5432"),
+            "ENGINE": config("SQL_ENGINE"),
+            "NAME": config("SQL_DATABASE"),
+            "USER": config("SQL_USER"),
+            "PASSWORD": config("SQL_PASSWORD"),
+            "HOST": config("SQL_HOST"),
+            "PORT": config("SQL_PORT"),
         }
     }
 
