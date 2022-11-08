@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  web-app:
+    build:
+      context: ./advertisingSystem
+      dockerfile: Dockerfile.prod
+    command: gunicorn --bind :8000 --workers 3 advertisingSystem.wsgi:application
+    ports:
+      - 8000:8000
+    env_file:
+      - ./advertisingSystem/.env.prod
+    depends_on:
+      - db
+    networks:
+      - web-app-net
+    
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+    networks:
+      - web-app-net
+
+volumes:
+  postgres_data:
+
+networks:
+  web-app-net: {}
